@@ -1,0 +1,158 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#173f38">
+<title>Pengajian Nurul Iman – Rekod Pembacaan Iqra’</title>
+<style>
+:root{--bg:#f4f7f5;--panel:#fff;--ink:#19332e;--muted:#71817c;--green:#1c6657;--green2:#e5f1ec;--line:#e2eae6;--gold:#c49a52;--red:#a83d3d;--shadow:0 12px 34px #183b3010}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,select{font:inherit}button{cursor:pointer;border:0;border-radius:12px;padding:11px 16px;background:var(--green);color:white;font-weight:650}
+button.secondary{background:var(--green2);color:var(--green)}button.danger{background:#faeaea;color:var(--red)}
+input,select{width:100%;padding:12px;border:1px solid var(--line);border-radius:11px;background:#fff;color:var(--ink);outline:none}
+input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px #1c66571a}
+label{display:block;font-size:13px;color:var(--muted);font-weight:650;margin:0 0 6px}
+.wrap{max-width:1120px;margin:auto;padding:22px}.top{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}
+.brand{display:flex;gap:13px;align-items:center}.mark{width:48px;height:48px;border-radius:16px;background:var(--green);color:#fff;display:grid;place-items:center;font-size:22px}
+h1{font-size:20px;margin:0} .sub{color:var(--muted);font-size:13px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}
+.login{max-width:430px;margin:7vh auto}.login h2{margin:0 0 5px}.stack{display:grid;gap:14px}.row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.between{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:18px 0}.stat{padding:17px;border-radius:16px;background:#f7faf8;border:1px solid var(--line)}.stat b{display:block;font-size:25px}.stat span{color:var(--muted);font-size:13px}
+.tools{display:grid;grid-template-columns:1fr auto;gap:10px;margin:18px 0}.list{display:grid;gap:9px}.student{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:14px;border:1px solid var(--line);border-radius:14px;background:#fff}.student strong{display:block}.student small{color:var(--muted)}
+.hidden{display:none!important}.muted{color:var(--muted)}.notice{padding:12px 14px;border-radius:12px;background:#fff7e8;color:#795a25;font-size:13px;margin-top:14px}
+.modal{position:fixed;inset:0;background:#10251f77;display:grid;place-items:center;padding:16px;z-index:5}.modalbox{background:#fff;border-radius:20px;padding:22px;width:min(560px,100%);max-height:90vh;overflow:auto}
+.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:13px}.full{grid-column:1/-1}.history{border-left:2px solid var(--line);margin:15px 0 0 8px;padding-left:18px;display:grid;gap:13px}.entry{position:relative;padding:12px;border:1px solid var(--line);border-radius:13px}.entry:before{content:"";position:absolute;width:9px;height:9px;border-radius:50%;background:var(--gold);left:-24px;top:17px}
+.tag{font-size:12px;border-radius:30px;padding:4px 9px;background:var(--green2);color:var(--green);font-weight:700}.tag.no{background:#faeaea;color:var(--red)}
+.empty{text-align:center;padding:28px;color:var(--muted)}.toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);background:#173f38;color:#fff;padding:11px 16px;border-radius:12px;z-index:9;max-width:90%;box-shadow:var(--shadow)}
+footer{text-align:center;color:var(--muted);font-size:12px;padding:25px}
+@media(max-width:650px){.wrap{padding:14px}.panel{padding:17px}.grid{grid-template-columns:1fr 1fr}.formgrid{grid-template-columns:1fr}.full{grid-column:auto}.tools{grid-template-columns:1fr}.top{align-items:flex-start}}
+@media print{body{background:white}.no-print,button,.top-actions{display:none!important}.wrap{max-width:none;padding:0}.panel{box-shadow:none;border:0;padding:0}.modal{position:static;background:white;padding:0}.modalbox{width:100%;max-height:none;padding:0}.history{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><div class="mark">۞</div><div><h1>Pengajian Nurul Iman</h1><div class="sub">Rekod Pembacaan Iqra’ & Al-Quran</div></div></div>
+    <div id="topActions" class="top-actions hidden"><button class="secondary" id="logoutBtn">Log keluar</button></div>
+  </header>
+
+  <section id="loginView" class="panel login">
+    <div class="sub" style="letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700">Portal pengurusan</div>
+    <h2>Log masuk Admin</h2><p class="muted" style="margin-top:4px">Masuk menggunakan akaun Admin yang telah didaftarkan dalam Firebase.</p>
+    <form id="loginForm" class="stack">
+      <div><label for="email">Emel Admin</label><input id="email" type="email" autocomplete="username" required placeholder="admin@email.com"></div>
+      <div><label for="password">Kata laluan</label><input id="password" type="password" autocomplete="current-password" required placeholder="Kata laluan"></div>
+      <button type="submit" id="loginBtn">Log masuk</button>
+    </form>
+    <div class="notice">Akses hanya untuk akaun yang mempunyai peranan <b>admin</b> dalam Firebase.</div>
+    <p id="loginError" class="muted" role="status"></p>
+  </section>
+
+  <main id="appView" class="hidden">
+    <div class="between"><div><div class="sub">DASHBOARD ADMIN</div><h2 style="margin:3px 0">Rekod murid</h2><div class="muted" id="welcome"></div></div><button id="addStudentBtn">＋ Tambah murid</button></div>
+    <div class="grid">
+      <div class="stat"><b id="studentCount">0</b><span>Jumlah murid</span></div>
+      <div class="stat"><b id="recordCount">0</b><span>Jumlah rekod bacaan</span></div>
+      <div class="stat"><b id="todayCount">0</b><span>Rekod hari ini</span></div>
+    </div>
+    <section class="panel">
+      <div class="between"><div><h3 style="margin:0">Senarai murid</h3><div class="sub">Tekan nama untuk melihat profil dan sejarah bacaan</div></div></div>
+      <div class="tools"><input id="search" placeholder="Cari nama murid…" aria-label="Cari nama murid"><select id="sort"><option value="az">Nama A – Z</option><option value="za">Nama Z – A</option><option value="new">Murid terkini</option></select></div>
+      <div id="studentList" class="list"><div class="empty">Memuatkan data…</div></div>
+    </section>
+  </main>
+  <footer>Pengajian Nurul Iman · Rekod pembacaan murid</footer>
+</div>
+
+<div id="studentModal" class="modal hidden"><div class="modalbox">
+  <div class="between"><h3 id="studentModalTitle" style="margin:0">Tambah murid</h3><button class="secondary" data-close="studentModal">Tutup</button></div>
+  <form id="studentForm" class="stack" style="margin-top:18px"><div><label>Nama murid</label><input id="studentName" maxlength="100" required placeholder="Masukkan nama murid"></div><div class="row"><button type="submit">Simpan murid</button><button type="button" class="secondary" data-close="studentModal">Batal</button></div></form>
+</div></div>
+
+<div id="profileModal" class="modal hidden"><div class="modalbox">
+  <div class="between"><div><div class="sub">PROFIL MURID</div><h2 id="profileName" style="margin:2px 0"></h2></div><button class="secondary no-print" data-close="profileModal">Tutup</button></div>
+  <div class="row no-print" style="margin:16px 0"><button id="addRecordBtn">＋ Rekod bacaan</button><button class="secondary" id="editStudentBtn">Edit nama</button><button class="secondary" id="printBtn">Cetak / PDF</button></div>
+  <div class="between"><h3 style="margin:8px 0">Sejarah bacaan</h3><span class="sub" id="profileRecordCount"></span></div>
+  <div id="historyList" class="history"></div>
+</div></div>
+
+<div id="recordModal" class="modal hidden"><div class="modalbox">
+  <div class="between"><h3 style="margin:0">Tambah rekod bacaan</h3><button class="secondary" data-close="recordModal">Tutup</button></div>
+  <form id="recordForm" class="stack" style="margin-top:18px">
+    <div class="formgrid">
+      <div><label>Jenis bacaan</label><select id="level"><option>Iqra’ 1</option><option>Iqra’ 2</option><option>Iqra’ 3</option><option>Iqra’ 4</option><option>Iqra’ 5</option><option>Iqra’ 6</option><option>Al-Quran</option></select></div>
+      <div><label>Tarikh</label><input id="readDate" type="date" required></div>
+      <div><label>Muka surat</label><input id="page" type="number" min="1" max="9999" required placeholder="Contoh: 12"></div>
+      <div><label>Status bacaan</label><select id="status"><option>Lancar</option><option>Tidak Lancar</option></select></div>
+    </div>
+    <div class="row"><button type="submit">Simpan rekod</button><button type="button" class="secondary" data-close="recordModal">Batal</button></div>
+  </form>
+</div></div>
+<div id="toast" class="toast hidden" role="status"></div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+import { getDatabase, ref, get, set, push, update, remove, onValue } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAw_w09G0lN0OCYm3yuJtmU9jCokw9QzC4",
+  authDomain: "pengajian-nurul-iman.firebaseapp.com",
+  databaseURL: "https://pengajian-nurul-iman-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "pengajian-nurul-iman",
+  storageBucket: "pengajian-nurul-iman.firebasestorage.app",
+  messagingSenderId: "589421555189",
+  appId: "1:589421555189:web:a6c5aca17789b3e5c004bc"
+};
+
+const app=initializeApp(firebaseConfig), auth=getAuth(app), db=getDatabase(app);
+const $=id=>document.getElementById(id);
+let students={}, currentStudentId=null, editingId=null, stopStudents=null;
+const today=()=>new Date().toLocaleDateString('en-CA');
+function toast(msg){$('toast').textContent=msg;$('toast').classList.remove('hidden');setTimeout(()=>$('toast').classList.add('hidden'),2600)}
+function show(id){$(id).classList.remove('hidden')} function hide(id){$(id).classList.add('hidden')}
+function safeText(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function recordsOf(s){return Object.entries(s?.history||{}).map(([id,r])=>({id,...r})).sort((a,b)=>(b.date||'').localeCompare(a.date||''))}
+function dateLabel(s){if(!s)return '—';const d=new Date(s+'T00:00:00');return d.toLocaleDateString('ms-MY',{day:'numeric',month:'short',year:'numeric'})}
+async function isAdmin(user){const snap=await get(ref(db,`users/${user.uid}/role`));return snap.exists()&&snap.val()==='admin'}
+function render(){
+ const arr=Object.entries(students).map(([id,s])=>({id,...s}));
+ const total=arr.reduce((n,s)=>n+recordsOf(s).length,0),todayN=arr.reduce((n,s)=>n+recordsOf(s).filter(r=>r.date===today()).length,0);
+ $('studentCount').textContent=arr.length;$('recordCount').textContent=total;$('todayCount').textContent=todayN;
+ const q=$('search').value.trim().toLocaleLowerCase('ms');const mode=$('sort').value;
+ let filtered=arr.filter(s=>(s.name||'').toLocaleLowerCase('ms').includes(q));
+ filtered.sort((a,b)=>mode==='za'?(b.name||'').localeCompare(a.name||''):mode==='new'?(b.createdAt||0)-(a.createdAt||0):(a.name||'').localeCompare(b.name||''));
+ $('studentList').innerHTML=filtered.length?filtered.map(s=>`<button class="student" style="text-align:left;color:var(--ink);background:#fff;width:100%;font-weight:400" data-profile="${safeText(s.id)}"><span><strong>${safeText(s.name)}</strong><small>${recordsOf(s).length} rekod bacaan</small></span><span class="tag">Buka profil　›</span></button>`).join(''):'<div class="empty">Tiada murid ditemui. Tekan “Tambah murid” untuk mula.</div>';
+}
+function openProfile(id){
+ currentStudentId=id;const s=students[id];if(!s)return;
+ $('profileName').textContent=s.name||'Tanpa nama';const recs=recordsOf(s);$('profileRecordCount').textContent=`${recs.length} rekod`;
+ $('historyList').innerHTML=recs.length?recs.map(r=>`<div class="entry"><div class="between"><b>${safeText(r.level)}</b><span class="tag ${r.status==='Lancar'?'':'no'}">${safeText(r.status)}</span></div><div class="sub">${dateLabel(r.date)} · Muka surat ${safeText(r.page)}</div></div>`).join(''):'<div class="empty">Belum ada rekod bacaan.</div>';
+ show('profileModal');
+}
+$('loginForm').addEventListener('submit',async e=>{e.preventDefault();$('loginError').textContent='';$('loginBtn').disabled=true;
+ try{await signInWithEmailAndPassword(auth,$('email').value.trim(),$('password').value)}catch(err){$('loginError').textContent=err.code==='auth/invalid-credential'?'Emel atau kata laluan tidak tepat.':err.message}finally{$('loginBtn').disabled=false}});
+onAuthStateChanged(auth,async user=>{
+ if(stopStudents){stopStudents();stopStudents=null}
+ if(!user){hide('appView');hide('topActions');show('loginView');return}
+ try{
+  if(!await isAdmin(user)){await signOut(auth);$('loginError').textContent='Akaun ini belum diberikan peranan Admin.';return}
+  hide('loginView');show('appView');show('topActions');$('welcome').textContent=`Log masuk sebagai ${user.email||'Admin'}`;
+  stopStudents=onValue(ref(db,'students'),snap=>{students=snap.val()||{};render()},err=>toast('Tidak dapat membaca data: '+err.message));
+ }catch(err){toast('Semakan Admin gagal: '+err.message);await signOut(auth)}
+});
+$('logoutBtn').onclick=()=>signOut(auth);
+$('addStudentBtn').onclick=()=>{editingId=null;$('studentModalTitle').textContent='Tambah murid';$('studentName').value='';show('studentModal');$('studentName').focus()};
+$('studentForm').onsubmit=async e=>{e.preventDefault();const name=$('studentName').value.trim();if(!name)return;
+ try{if(editingId){await update(ref(db,'students/'+editingId),{name})}else{const n=push(ref(db,'students'));await set(n,{name,createdAt:Date.now(),history:{}})}hide('studentModal');toast('Profil murid disimpan.')}catch(err){toast('Gagal simpan: '+err.message)}};
+$('studentList').addEventListener('click',e=>{const b=e.target.closest('[data-profile]');if(b)openProfile(b.dataset.profile)});
+$('search').oninput=render;$('sort').onchange=render;
+$('addRecordBtn').onclick=()=>{$('readDate').value=today();show('recordModal')};
+$('recordForm').onsubmit=async e=>{e.preventDefault();if(!currentStudentId)return;const item={level:$('level').value,date:$('readDate').value,page:Number($('page').value),status:$('status').value,createdAt:Date.now()};
+ try{const n=push(ref(db,`students/${currentStudentId}/history`));await set(n,item);hide('recordModal');toast('Rekod bacaan disimpan.');openProfile(currentStudentId)}catch(err){toast('Gagal simpan rekod: '+err.message)}};
+$('editStudentBtn').onclick=()=>{editingId=currentStudentId;$('studentModalTitle').textContent='Edit nama murid';$('studentName').value=students[currentStudentId]?.name||'';show('studentModal')};
+$('printBtn').onclick=()=>window.print();
+document.querySelectorAll('[data-close]').forEach(b=>b.onclick=()=>hide(b.dataset.close));
+</script>
+</body>
+</html>
